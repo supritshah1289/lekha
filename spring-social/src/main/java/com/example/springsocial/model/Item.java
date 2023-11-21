@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -39,4 +41,7 @@ public class Item {
     @Column(name = "status")
     private boolean status;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "item_id")
+    private List<images> uploads = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package com.example.springsocial.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
@@ -33,6 +34,8 @@ public class Address {
     @Column(name="country")
     private String country;
 
+    @Column(name="geolocation")
+    private Point geolocation;
 
     @Column(name = "primary")
     private boolean primary;

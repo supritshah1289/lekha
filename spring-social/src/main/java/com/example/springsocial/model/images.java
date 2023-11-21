@@ -7,11 +7,11 @@ import java.sql.Date;
 
 @Entity
 @Data
-@Table(name = "uploads")
-public class Upload {
+@Table(name = "images")
+public class images {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "file_name")
@@ -19,6 +19,7 @@ public class Upload {
 
     @Column(name = "extension")
     private String extension;
+
 
     @Column(name = "image")
     private byte[] image;
@@ -31,5 +32,6 @@ public class Upload {
 
     @Column(name = "created_at")
     private Date createdAt;
+
 
 }

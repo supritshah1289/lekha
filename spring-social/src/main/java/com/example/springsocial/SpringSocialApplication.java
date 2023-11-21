@@ -2,27 +2,30 @@ package com.example.springsocial;
 
 import com.example.springsocial.config.AppProperties;
 import com.example.springsocial.model.Address;
-import com.example.springsocial.model.Category;
+import com.example.springsocial.model.Item;
 import com.example.springsocial.model.User;
 import com.example.springsocial.repository.AddressRepository;
 import com.example.springsocial.repository.CategoryRepository;
+import com.example.springsocial.repository.ItemRepository;
 import com.example.springsocial.repository.UserRepository;
+import com.example.springsocial.security.CurrentUser;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class SpringSocialApplication implements CommandLineRunner {
+public class SpringSocialApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSocialApplication.class, args);
@@ -37,26 +40,34 @@ public class SpringSocialApplication implements CommandLineRunner {
 	@Autowired
 	private AddressRepository addressRepository;
 
+	@Autowired
+	private ItemRepository itemRepository;
+/*
+
 	@Override
 	public void run(String... args) throws Exception {
-		/*Category category = new Category();
-		category.setTitle("Artist");
-		category.setDescription("List all your artistic offering on here. It includes DJ, Henna Artist, MUA so on so forth");
-		categoryRepository.save(category);*/
 
-		Optional<User> user = userRepository.findByEmail("suprit7@gmail.com");
 
+		GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(), 4326);
+		Point point = geometryFactory.createPoint(new Coordinate(40.6976312,-74.1444869));
 
 		Address address = new Address();
-		address.setStreet("14 Garfield Park");
-		address.setApt("#B");
-		address.setCity("Edison");
-		address.setUserId(user.get().getId());
+		address.setStreet("1 Central Park S");
+		address.setCity("New York");
+		address.setUserId(1L);
+		address.setGeolocation(point);
+		address.setState("New York");
 		address.setCountry("USA");
-		address.setZipCode("08837");
-		address.setCreatedAt(new Date());
+		address.setZipCode("10019");
+		address.setCreatedAt(new Date(2023, 10,15));
 		addressRepository.save(address);
 
+		List<Address> address1 = addressRepository.findAll();
+		System.out.println(address1.toString());
+
 	}
+
+*/
+
 
 }
